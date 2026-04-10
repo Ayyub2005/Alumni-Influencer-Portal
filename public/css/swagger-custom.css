@@ -1,0 +1,182 @@
+/* public/css/swagger-custom.css */
+/* Premium Dark Mode Swagger UI Redesign (Vercel/Stripe Dark inspired) */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+/* Apply full dark background to the entire browser window */
+html, body {
+  background-color: #0F172A !important;
+  color: #F8FAFC !important;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+.swagger-ui {
+  font-family: 'Inter', -apple-system, sans-serif !important;
+  color: #F8FAFC;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Base text sizing & layout */
+.swagger-ui .info { margin: 50px 0; }
+.swagger-ui .info .title { font-family: 'Inter', sans-serif; font-weight: 800; font-size: 42px; letter-spacing: -1px; color: #FFFFFF; margin-bottom: 24px; display: flex; align-items: center; gap: 12px; }
+.swagger-ui .info .title small { background: #312E81; color: #818CF8; font-size: 14px; font-weight: 600; padding: 4px 10px; border-radius: 99px; position: relative; top: -3px; }
+.swagger-ui .info .title small.version-stamp { background: #064E3B; color: #34D399; }
+
+/* Description Markdown Styling */
+.swagger-ui .info .description { padding: 32px 40px !important; background: #1E293B !important; border-radius: 12px !important; border: 1px solid #334155 !important; margin-top: 32px !important; }
+.swagger-ui .info p { font-size: 16px !important; line-height: 1.8 !important; color: #CBD5E1 !important; margin-bottom: 24px !important; }
+.swagger-ui .info h2, .swagger-ui .info h3, .swagger-ui .info h4 { font-family: 'Inter', sans-serif !important; color: #F1F5F9 !important; margin: 36px 0 16px 0 !important; border-bottom: 1px solid #334155 !important; padding-bottom: 12px !important; }
+.swagger-ui .info h2 { font-size: 24px !important; }
+.swagger-ui .info h3 { font-size: 20px !important; }
+.swagger-ui .info ul { padding-left: 24px !important; list-style-type: none !important; margin-bottom: 40px !important; }
+.swagger-ui .info ul li { position: relative !important; margin-bottom: 24px !important; color: #CBD5E1 !important; line-height: 1.8 !important; font-size: 16px !important; padding-left: 8px !important; }
+.swagger-ui .info ul li::before { content: "•" !important; color: #818CF8 !important; font-weight: bold !important; position: absolute !important; left: -16px !important; font-size: 20px !important; top: -3px !important; }
+.swagger-ui .info strong { color: #FFFFFF !important; font-weight: 600 !important; }
+.swagger-ui .info code { background: #312E81 !important; color: #A5B4FC !important; padding: 4px 8px !important; border-radius: 6px !important; font-family: 'JetBrains Mono', monospace !important; font-size: 14px !important; margin: 0 4px !important; }
+
+.swagger-ui .info a { color: #818CF8; text-decoration: none; font-weight: 500; }
+.swagger-ui .info a:hover { text-decoration: underline; color: #A5B4FC; }
+
+/* Servers & Authorize Container (Scheme Container) */
+.swagger-ui .scheme-container { margin: 0 0 40px 0 !important; padding: 24px 0 !important; background: transparent !important; border: none !important; box-shadow: none !important; outline: none !important; display: flex !important; align-items: center !important; justify-content: space-between !important; flex-wrap: wrap !important; }
+.swagger-ui .scheme-container .schemes { display: flex; align-items: center; gap: 16px; margin-right: 0;}
+.swagger-ui .scheme-container .schemes > label { font-family: 'Inter', sans-serif !important; font-size: 24px !important; font-weight: 700 !important; color: #F1F5F9 !important; margin: 0 16px 0 0 !important; }
+.swagger-ui .scheme-container .schemes > select { border-radius: 24px !important; border: 1px solid #475569 !important; font-family: 'Inter', sans-serif !important; font-size: 14px !important; padding: 12px 36px 12px 20px !important; color: #F8FAFC !important; background-color: #1E293B !important; cursor: pointer; outline: none !important; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23CBD5E1'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; background-size: 16px; }
+.swagger-ui .scheme-container .schemes > select:focus { border-color: #818CF8 !important; box-shadow: 0 0 0 3px rgba(129,140,248,0.2) !important; }
+
+/* Hide the ugly default topbar if present */
+.topbar { display: none !important; }
+
+/* Wrapper area */
+.swagger-ui .wrapper { padding: 0; max-width: 100%; }
+
+/* Group Tags (Auth, Profile, Admin) */
+.swagger-ui .opblock-tag {
+  font-family: 'Inter', sans-serif; font-size: 24px; font-weight: 700; color: #F8FAFC;
+  border-bottom: 1px solid #334155; padding: 48px 0 16px 0; margin: 0 0 24px 0;
+}
+.swagger-ui .opblock-tag:hover { background: transparent; }
+.swagger-ui .opblock-tag small { font-weight: 400; font-size: 15px; color: #94A3B8; padding-left: 12px; }
+
+/* Operation Blocks (API endpoints) */
+.swagger-ui .opblock {
+  border-radius: 12px; border: 1px solid #334155; background: #1E293B;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2); margin-bottom: 16px; transition: all 0.2s;
+}
+.swagger-ui .opblock:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.4); border-color: #475569; }
+
+/* HTTP Methods Colors Refined for Dark Mode */
+.swagger-ui .opblock.opblock-get { border-color: #312E81; background: #1E293B; }
+.swagger-ui .opblock.opblock-post { border-color: #064E3B; background: #1E293B; }
+.swagger-ui .opblock.opblock-put { border-color: #78350F; background: #1E293B; }
+.swagger-ui .opblock.opblock-patch { border-color: #78350F; background: #1E293B; }
+.swagger-ui .opblock.opblock-delete { border-color: #7F1D1D; background: #1E293B; }
+
+.swagger-ui .opblock .opblock-summary { padding: 12px 20px; border-bottom: none; }
+
+/* Method Badges */
+.swagger-ui .opblock .opblock-summary-method {
+  border-radius: 6px; font-family: 'SFMono-Regular', Consolas, monospace; font-weight: 700;
+  text-transform: uppercase; font-size: 13px; padding: 6px 12px; min-width: 70px;
+}
+.swagger-ui .opblock.opblock-get .opblock-summary-method { background: #3730A3; color: #E0E7FF; }
+.swagger-ui .opblock.opblock-post .opblock-summary-method { background: #065F46; color: #D1FAE5; }
+.swagger-ui .opblock.opblock-put .opblock-summary-method,
+.swagger-ui .opblock.opblock-patch .opblock-summary-method { background: #92400E; color: #FEF3C7; }
+.swagger-ui .opblock.opblock-delete .opblock-summary-method { background: #991B1B; color: #FEE2E2; }
+
+/* Path Text */
+.swagger-ui .opblock .opblock-summary-path {
+  font-family: 'JetBrains Mono', 'SFMono-Regular', Consolas, monospace; font-size: 15px; font-weight: 600; color: #F8FAFC;
+}
+.swagger-ui .opblock .opblock-summary-path__deprecated { color: #94A3B8; text-decoration: line-through; }
+
+.swagger-ui .opblock .opblock-summary-description { font-family: 'Inter', sans-serif; font-size: 14px; color: #CBD5E1; font-weight: 400; padding-left: 16px; }
+
+/* Expanded Body section */
+.swagger-ui .opblock-body { padding: 24px; border-top: 1px solid #334155; background: #0F172A; border-bottom-left-radius: 12px; border-bottom-right-radius: 12px; }
+
+/* Strip the ugly banner backgrounds from Parameters/Responses headers */
+.swagger-ui .opblock-section-header {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 16px 0 8px 0 !important;
+  min-height: auto !important;
+}
+.swagger-ui .opblock-section-header h4 {
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 700 !important;
+  font-size: 18px !important;
+  color: #F8FAFC !important;
+  margin: 0 !important;
+}
+
+/* Buttons inside UI */
+.swagger-ui .btn {
+  font-family: 'Inter', sans-serif; font-weight: 600; font-size: 14px; border-radius: 24px !important; padding: 10px 24px !important;
+  transition: all 0.2s; background: #1E293B !important; border: 1px solid #475569 !important; color: #F8FAFC !important;
+}
+.swagger-ui .btn:hover { background: #334155 !important; border-color: #64748B !important; }
+
+/* Execute & Clear wrapper spacing */
+.swagger-ui .execute-wrapper { padding: 20px 0 !important; display: flex !important; gap: 16px !important; align-items: center !important; }
+.swagger-ui .btn-clear { margin: 0 !important; }
+
+.swagger-ui .btn.execute { background: #4F46E5 !important; border-color: #4F46E5 !important; color: #FFFFFF !important; padding: 10px 48px !important; width: auto !important; max-width: 250px !important; }
+.swagger-ui .btn.execute:hover { background: #6366F1 !important; border-color: #6366F1 !important; box-shadow: 0 4px 12px rgba(99,102,241,0.3) !important; }
+
+.swagger-ui .btn.authorize { color: #10B981 !important; border-color: #10B981 !important; background: transparent !important; padding: 8px 32px !important; margin-top: 10px !important; }
+.swagger-ui .btn.authorize:hover { background: rgba(16,185,129,0.1) !important; border-color: #34D399 !important; }
+.swagger-ui .btn.authorize svg { fill: #10B981 !important; }
+
+/* Inputs and Textareas */
+.swagger-ui input[type="text"], .swagger-ui textarea, .swagger-ui select {
+  border-radius: 8px; border: 1px solid #475569; font-family: 'JetBrains Mono', monospace; font-size: 14px; padding: 10px 14px; background: #1E293B; color: #F8FAFC;
+}
+.swagger-ui input[type="text"]:focus, .swagger-ui textarea:focus, .swagger-ui select:focus { border-color: #818CF8; outline: none; box-shadow: 0 0 0 3px rgba(129,140,248,0.2); }
+
+/* Parameters Tables */
+.swagger-ui table.parameters { background: transparent; border: none; }
+.swagger-ui table.parameters thead tr th {
+  font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; color: #94A3B8; text-transform: uppercase; letter-spacing: 0.5px;
+  border-bottom: 1px solid #334155; padding-bottom: 12px; margin-bottom: 12px;
+}
+.swagger-ui .parameter__name { font-family: 'JetBrains Mono', monospace; font-size: 14px; font-weight: 600; color: #F8FAFC; }
+.swagger-ui .parameter__type { font-size: 13px; color: #94A3B8; }
+.swagger-ui .markdown p { font-family: 'Inter', sans-serif; font-size: 14px; color: #CBD5E1; margin: 0; }
+.swagger-ui table thead tr td, .swagger-ui table thead tr th { border-bottom: 1px solid #334155; }
+.swagger-ui table tbody tr td { border-bottom: 1px solid #334155; padding: 10px 0; }
+
+/* Responses Section */
+.swagger-ui h4 { font-family: 'Inter', sans-serif; font-weight: 600; font-size: 16px; color: #F8FAFC; margin: 24px 0 12px 0; }
+.swagger-ui .responses-table { border: 1px solid #334155; border-radius: 8px; overflow: hidden; }
+.swagger-ui .responses-table thead th { background: #1E293B; border-bottom: 1px solid #334155; padding: 12px 16px; font-weight: 600; font-size: 13px; color: #94A3B8; text-transform: uppercase; }
+.swagger-ui .response-col_status { font-family: 'JetBrains Mono', monospace; font-size: 15px; font-weight: 700; color: #F8FAFC; }
+
+/* Code Blocks (JSON) */
+.swagger-ui .highlight-code { font-family: 'JetBrains Mono', monospace; font-size: 13px; border-radius: 8px; }
+.swagger-ui .microlight { background: #000000 !important; border-radius: 8px; padding: 16px !important; color: #E5E7EB !important; border: 1px solid #334155; }
+
+/* Models/Schemas Section at bottom */
+.swagger-ui section.models {
+  margin: 60px 0; border: 1px solid #334155; border-radius: 12px; background: #1E293B; padding: 24px; box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+.swagger-ui section.models h4 { font-family: 'Inter', sans-serif; font-size: 20px; font-weight: 700; border-bottom: 1px solid #334155; margin-top: 0; padding-bottom: 16px; color: #F8FAFC; }
+.swagger-ui section.models h4:hover { background: transparent; }
+.swagger-ui .model-box { border-radius: 8px; background: #0F172A; padding: 10px; }
+.swagger-ui .model-title { font-family: 'JetBrains Mono', monospace; font-size: 15px; font-weight: 600; color: #818CF8; }
+.swagger-ui .prop { font-family: 'JetBrains Mono', monospace; color: #CBD5E1;}
+.swagger-ui .prop-type { color: #34D399; }
+.swagger-ui .prop-format { color: #94A3B8; }
+
+/* Try it out mode background */
+.swagger-ui .opblock.is-open .opblock-summary { border-bottom: 1px solid #334155; }
+.swagger-ui .dialog-ux .modal-ux { background: #1E293B; border: 1px solid #334155; color: #F8FAFC; }
+.swagger-ui .dialog-ux .modal-ux-header { border-bottom: 1px solid #334155; }
+.swagger-ui .dialog-ux .modal-ux-header h3 { color: #F8FAFC; }
+

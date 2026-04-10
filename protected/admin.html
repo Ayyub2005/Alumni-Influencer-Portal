@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Developer API | Phantasmagoria</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    .layout {
+      display: flex;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    .sidebar {
+      width: 250px;
+      background: rgba(0, 0, 0, 0.3);
+      border-right: 1px solid var(--border);
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .brand {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 2.5rem;
+    }
+
+    .nav-link {
+      display: flex;
+      align-items: center;
+      padding: .75rem 1rem;
+      color: var(--text-secondary);
+      text-decoration: none;
+      border-radius: var(--radius-sm);
+      margin-bottom: .5rem;
+      font-weight: 500;
+      transition: all .2s;
+      cursor: pointer;
+    }
+
+    .nav-link:hover {
+      color: var(--text-primary);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .nav-link.active {
+      color: var(--accent-light);
+      background: rgba(124, 58, 237, 0.15);
+      border-left: 3px solid var(--accent);
+    }
+
+    .main-content {
+      flex: 1;
+      padding: 2.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+      min-height: 100vh;
+    }
+
+    .admin-panel {
+      display: none;
+    }
+
+    .admin-panel.active {
+      display: block;
+      animation: fadeIn 0.3s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .token-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 1.25rem;
+      margin-bottom: 1rem;
+    }
+
+    .token-card.revoked {
+      opacity: 0.6;
+    }
+
+    .token-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+    }
+
+    .alumni-scroll {
+      max-height: calc(100vh - 280px);
+      overflow-y: auto;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background: rgba(0, 0, 0, 0.2);
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="layout" id="app-layout">
+    <div class="sidebar">
+      <div class="brand">Phantasmagoria Admin</div>
+
+      <div class="nav-link active" data-nav="api">API Management</div>
+      <div class="nav-link" data-nav="alumni">Alumni Management</div>
+      <a href="/api-docs" target="_blank" class="nav-link">Swagger Docs</a>
+
+      <div style="margin-top: auto;">
+        <button id="logout-btn" class="btn btn-secondary btn-full">Sign Out</button>
+      </div>
+    </div>
+
+    <div class="main-content">
+
+      <!-- API PANEL -->
+      <div id="panel-api" class="admin-panel active">
+        <div class="section-header">
+          <div>
+            <h1>API Control Center</h1>
+            <p class="text-muted mt-1">Bearer tokens for 3rd party platform access.</p>
+          </div>
+          <!-- <a href="/api-docs" target="_blank" class="btn btn-secondary">View Swagger Docs</a> -->
+        </div>
+
+        <div class="card mb-6">
+          <h3 class="mb-4">Generate New API Key</h3>
+          <form id="generate-token-form" class="flex gap-4 items-center">
+            <div class="form-group flex-1" style="margin:0;"><input type="text" id="token-name" class="form-input"
+                placeholder="e.g. AR App" required></div>
+            <button type="submit" class="btn btn-primary" id="generate-btn">Generate</button>
+          </form>
+          <div id="new-token-container" class="hidden mt-4 p-4 bg-accent-glow border-accent border-radius-md">
+            <div class="text-xs text-accent-light fw-600 mb-2">Warning: Copy your API key now. It will not be shown again!
+            </div>
+            <div class="flex gap-2">
+              <input type="text" id="raw-token-input" readonly class="form-input flex-1 font-mono text-sm"
+                style="background:rgba(0,0,0,0.3)" />
+              <button class="btn btn-sm btn-primary" id="copy-key-btn">Copy</button>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="mb-4">Active API Keys</h3>
+        <div id="tokens-list">
+          <div class="spinner"></div>
+        </div>
+      </div>
+
+      <!-- ALUMNI PANEL -->
+      <div id="panel-alumni" class="admin-panel">
+        <div class="section-header">
+          <h1>Alumni Management</h1>
+          <div style="width: 300px;"><input type="text" id="alumni-search" class="form-input"
+              placeholder="Search by name or email..."></div>
+        </div>
+        <div class="card p-0 overflow-hidden">
+          <div id="alumni-win-list" class="alumni-scroll">
+            <div class="spinner"></div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/admin.js"></script>
+</body>
+
+</html>

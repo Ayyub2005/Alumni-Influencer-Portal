@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phantasmagoria | University of Eastminster Alumni</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    .auth-container {
+      max-width: 400px;
+      margin: 4rem auto;
+    }
+
+    .hero {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .hero h1 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(135deg, var(--accent-light), var(--info));
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      font-size: 0.9rem;
+    }
+
+    .auth-tabs {
+      display: flex;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 1.5rem;
+    }
+
+    .auth-tab {
+      flex: 1;
+      text-align: center;
+      padding: 0.75rem;
+      cursor: pointer;
+      color: var(--text-muted);
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+      border-bottom: 2px solid transparent;
+    }
+
+    .auth-tab.active {
+      color: var(--accent-light);
+      border-bottom-color: var(--accent);
+    }
+
+    .auth-tab:hover:not(.active) {
+      color: var(--text-secondary);
+    }
+
+    .auth-form {
+      display: none;
+    }
+
+    .auth-form.active {
+      display: block;
+    }
+
+    .forgot-link {
+      font-size: 0.8rem;
+      color: var(--accent-light);
+      text-decoration: none;
+      display: block;
+      text-align: right;
+      margin-top: -0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .forgot-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="auth-container">
+    <div class="hero">
+      <h1>Phantasmagoria</h1>
+      <p>University of Eastminster Alumni Network</p>
+    </div>
+
+    <div class="card">
+      <div id="auth-alert" class="alert"></div>
+
+      <div class="auth-tabs">
+        <div class="auth-tab active" data-target="login">Login</div>
+        <div class="auth-tab" data-target="register">Register</div>
+      </div>
+
+      <!-- Login Form -->
+      <form id="login-form" class="auth-form active">
+        <div class="form-group">
+          <label class="form-label">University Email</label>
+          <input type="email" id="login-email" class="form-input" placeholder="e.g. john@westminster.ac.uk" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <input type="password" id="login-password" class="form-input" placeholder="••••••••" required>
+        </div>
+        <a href="#" id="forgot-btn" class="forgot-link">Forgot Password?</a>
+        <button type="submit" class="btn btn-primary btn-full">Sign In</button>
+      </form>
+
+      <!-- Register Form -->
+      <form id="register-form" class="auth-form">
+        <div class="form-group">
+          <label class="form-label">University Email</label>
+          <input type="email" id="reg-email" class="form-input" placeholder="Must be @westminster.ac.uk" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <input type="password" id="reg-password" class="form-input" placeholder="Min 8 characters, 1 upper, 1 special"
+            required>
+          <div class="text-xs text-muted mt-1">Must contain uppercase, lowercase, number, and special char.</div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Confirm Password</label>
+          <input type="password" id="reg-confirm" class="form-input" required>
+        </div>
+        <button type="submit" class="btn btn-primary btn-full">Create Account</button>
+      </form>
+
+      <!-- Forgot Password Form -->
+      <form id="forgot-form" class="auth-form">
+        <p class="text-sm text-secondary mb-4">Enter your university email to receive a password reset link.</p>
+        <div class="form-group">
+          <label class="form-label">University Email</label>
+          <input type="email" id="forgot-email" class="form-input" required>
+        </div>
+        <button type="submit" class="btn btn-primary btn-full">Send Reset Link</button>
+        <div class="mt-3 text-center">
+          <a href="#" class="text-sm text-muted back-to-login">Back to Login</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/auth.js"></script>
+</body>
+
+</html>
