@@ -19,7 +19,7 @@ const profileRoutes = require('./src/routes/profile');
 const bidRoutes = require('./src/routes/bids');
 const adminRoutes = require('./src/routes/admin');
 const publicRoutes = require('./src/routes/public');
-const { startScheduler, runMidnightSelection } = require('./src/services/bidScheduler');
+const { startScheduler } = require('./src/services/bidScheduler');
 const { verifyToken, verifyDeveloper } = require('./src/security/auth');
 
 // ─────────────────────────────────────────────
@@ -294,9 +294,7 @@ app.use((req, res) => {
 async function startServer() {
   await testConnection(); // Test DB connection before starting
   
-  // Run a sweep immediately on startup to catch any missed midnight sweeps while the server was offline
-  await runMidnightSelection();
-  
+
   startScheduler();       // Start midnight bid scheduler
   app.listen(PORT, () => {
     console.log(`Phantasmagoria API running on http://localhost:${PORT}`);
