@@ -9,14 +9,6 @@ const { generateToken, generateExpiry, hashToken } = require('../utils/tokenGene
 const emailService = require('../services/emailService');
 require('dotenv').config();
 
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-const { validationResult } = require('express-validator');
-const { pool } = require('../config/db');
-const { generateToken, generateExpiry, hashToken } = require('../utils/tokenGenerator');
-const emailService = require('../services/emailService');
-require('dotenv').config();
-
 async function register(req, res) {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
