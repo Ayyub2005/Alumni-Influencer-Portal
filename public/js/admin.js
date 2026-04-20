@@ -103,8 +103,15 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('generate-token-form').addEventListener('submit', async (e) => {
     e.preventDefault();
     const btn = document.getElementById('generate-btn'); btn.disabled = true;
+    
+    const checkboxes = document.querySelectorAll('input[name="permissions"]:checked');
+    const permissions = Array.from(checkboxes).map(cb => cb.value);
+
     try {
-      const { ok, data } = await API.post('/admin/tokens', { token_name: document.getElementById('token-name').value });
+      const { ok, data } = await API.post('/admin/tokens', { 
+        token_name: document.getElementById('token-name').value,
+        permissions: permissions
+      });
       if (ok) {
         document.getElementById('generate-token-form').reset();
         const rawTokenInput = document.getElementById('raw-token-input');

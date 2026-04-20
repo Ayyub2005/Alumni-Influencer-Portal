@@ -145,10 +145,27 @@
 
         <div class="card mb-6">
           <h3 class="mb-4">Generate New API Key</h3>
-          <form id="generate-token-form" class="flex gap-4 items-center">
-            <div class="form-group flex-1" style="margin:0;"><input type="text" id="token-name" class="form-input"
-                placeholder="e.g. AR App" required></div>
-            <button type="submit" class="btn btn-primary" id="generate-btn">Generate</button>
+          <form id="generate-token-form" style="display: flex; flex-direction: column; gap: 1rem;">
+            <div class="flex gap-4 items-center">
+              <div class="form-group flex-1" style="margin:0;">
+                <input type="text" id="token-name" class="form-input" placeholder="e.g. AR App" required>
+              </div>
+              <button type="submit" class="btn btn-primary" id="generate-btn">Generate</button>
+            </div>
+            <div class="form-group" style="margin:0;">
+              <div class="text-sm fw-600 mb-2" style="color: var(--text-secondary);">Select API Scopes (Permissions)</div>
+              <div class="flex gap-4" style="flex-wrap: wrap;">
+                <label style="display:flex; align-items:center; gap:0.5rem; cursor:pointer;" title="Allow reading standard alumni profiles">
+                  <input type="checkbox" name="permissions" value="read:alumni" checked> alumni
+                </label>
+                <label style="display:flex; align-items:center; gap:0.5rem; cursor:pointer;" title="Allow fetching analytics summaries (Required for CW2)">
+                  <input type="checkbox" name="permissions" value="read:analytics"> analytics
+                </label>
+                <label style="display:flex; align-items:center; gap:0.5rem; cursor:pointer;" title="Allow fetching the daily featured alumnus (Required for AR)">
+                  <input type="checkbox" name="permissions" value="read:alumni_of_day"> alumni_of_day
+                </label>
+              </div>
+            </div>
           </form>
           <div id="new-token-container" class="hidden mt-4 p-4 bg-accent-glow border-accent border-radius-md">
             <div class="text-xs text-accent-light fw-600 mb-2">Warning: Copy your API key now. It will not be shown again!

@@ -16,16 +16,17 @@ const options = {
 A secure REST API powering the **Phantasmagoria Alumni Engagement Platform** for the University of Eastminster.
 This documentation covers every endpoint, its request/response structure, validation rules, and business logic.
 
-## Authentication Model
+## Authentication & Granular Permissions
 
-This platform uses a **dual-mode authentication** strategy:
+This platform uses a **dual-mode authentication** strategy. Developer functionality is strictly governed by granular access control, meaning you must use the correct auth scheme below depending on the endpoint you wish to test.
 
-| Client | Method | Header Format | Obtained From |
-|--------|--------|---------------|---------------|
-| Alumni Portal | JWT Bearer Token | \`Authorization: Bearer <JWT>\` | \`POST /api/auth/login\` |
-| AR App / Public | API Key | \`Authorization: Bearer <API-TOKEN>\` | Admin Panel → Generate Key |
+| Client Platform | Method | Permissions / Scopes | Cannot Access |
+|-----------------|--------|----------------------|---------------|
+| **Alumni Portal** | JWT Bearer Token | *(Implied profile/bidding access)* | Developer API routes |
+| **Analytics Dashboard** | API Key | \`read:alumni\`, \`read:analytics\` | AR app endpoints |
+| **Mobile AR App** | API Key | \`read:alumni_of_day\` | Analytics endpoints |
 
-> Protected endpoints require a valid token. This documentation is read-only — use the Alumni Portal or the Alumni Highlight page to call protected endpoints.
+> **Note:** Protected endpoints mathematically enforce required scopes using token payload cross-referencing and will immediately throw **403 Forbidden** if over-privileged access is attempted.
 
 ---
 
@@ -49,17 +50,23 @@ This platform uses a **dual-mode authentication** strategy:
     security: [],
     components: {
       securitySchemes: {
-        AlumniJWT: {
+        AlumniAppAuth: {
           type: 'http',
           scheme: 'bearer',
           bearerFormat: 'JWT',
-          description: 'Obtained from /api/auth/login. Use for Profile and Bids.',
+          description: '**Alumni JWT Token** — Obtained from \`POST /api/auth/login\`. Required for Profile and Bidding operations.',
         },
-        DeveloperApiKey: {
+        AnalyticsDashboardAuth: {
           type: 'http',
           scheme: 'bearer',
           bearerFormat: 'API-Key',
-          description: 'Generated in Admin Panel. Use for Public Developer API.',
+          description: '**Dashboard API Key** — Required scopes: \`[read:alumni, read:analytics]\`. Strictly isolated from AR data.',
+        },
+        MobileArAppAuth: {
+          type: 'http',
+          scheme: 'bearer',
+          bearerFormat: 'API-Key',
+          description: '**Mobile AR App API Key** — Required scopes: \`[read:alumni_of_day]\`. Strictly isolated from Analytics telemetry.',
         },
       },
       schemas: {

@@ -16,18 +16,22 @@ const { pool } = require('../config/db');
 // Raw token shown once to user — never retrievable again
 // ─────────────────────────────────────────────
 async function generateToken(req, res) {
-  const { token_name } = req.body;
+  const { token_name, permissions } = req.body;
   const userId = req.user.id;
 
   try {
-    // Generate 32 random bytes → 64-char hex token
     const rawToken = crypto.randomBytes(32).toString('hex');
-    // Hash before storing (if DB is breached, tokens are not exposed)
     const tokenHash = crypto.createHash('sha256').update(rawToken).digest('hex');
 
+    // Validate that only known permissions are accepted
+    const allowed = ['read:alumni', 'read:analytics', 'read:alumni_of_day'];
+    const finalPerms = Array.isArray(permissions)
+      ? permissions.filter(p => allowed.includes(p))
+      : ['read:alumni'];
+
     const [result] = await pool.query(
-      'INSERT INTO api_tokens (user_id, token_hash, token_name) VALUES (?, ?, ?)',
-      [userId, tokenHash, token_name || 'API Token']
+      'INSERT INTO api_tokens (user_id, token_hash, token_name, permissions) VALUES (?, ?, ?, ?)',
+      [userId, tokenHash, token_name || 'API Token', JSON.stringify(finalPerms)]
     );
 
     res.status(201).json({
@@ -35,11 +39,10 @@ async function generateToken(req, res) {
       message: 'API token generated. Copy it now — it will never be shown again.',
       token_id: result.insertId,
       token_name: token_name || 'API Token',
-      // Raw token shown ONCE — user must copy this
+      permissions: finalPerms,
       api_token: rawToken,
       usage: 'Add to requests as: Authorization: Bearer ' + rawToken,
     });
-
   } catch (err) {
     console.error('Generate token error:', err);
     res.status(500).json({ success: false, message: 'Server error.' });

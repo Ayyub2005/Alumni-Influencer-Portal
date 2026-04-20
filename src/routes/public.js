@@ -14,7 +14,7 @@ const publicController   = require('../controllers/publicController');
  *     tags: [Public Developer API]
  *     summary: Get today's featured alumni
  *     security:
- *       - DeveloperApiKey: []
+ *       - MobileArAppAuth: []
  *     description: >
  *       **Auth required:** `Authorization: Bearer <API-TOKEN>` — Returns the full professional profile of the winner of the previous day's bidding cycle. The winner is selected at Midnight and becomes today's "Alumni of the Day". If no winner was selected, returns `featured: null`.
  *     responses:
@@ -40,7 +40,7 @@ router.get('/featured', verifyApiToken, publicController.getFeaturedAlumni);
  *     tags: [Public Developer API]
  *     summary: List all alumni (Directory)
  *     security:
- *       - DeveloperApiKey: []
+ *       - AnalyticsDashboardAuth: []
  *     description: '**Auth required:** `Authorization: Bearer <API-TOKEN>` — Returns a paginated list of all verified alumni profiles. Useful for building directory-style interfaces in the AR app.'
  *     parameters:
  *       - in: query
@@ -62,7 +62,7 @@ router.get('/alumni', verifyApiToken, publicController.listAlumni);
  *     tags: [Public Developer API]
  *     summary: Get alumni details by ID
  *     security:
- *       - DeveloperApiKey: []
+ *       - AnalyticsDashboardAuth: []
  *     description: '**Auth required:** `Authorization: Bearer <API-TOKEN>` — Returns the full professional profile for a specific alumni ID.'
  *     parameters:
  *       - in: path

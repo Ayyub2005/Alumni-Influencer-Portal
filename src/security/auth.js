@@ -113,4 +113,17 @@ async function verifyDeveloper(req, res, next) {
   next();
 }
 
-module.exports = { verifyToken, verifyApiToken, verifyDeveloper };
+function requirePermission(permission) {
+  return (req, res, next) => {
+    const perms = req.apiToken.permissions;
+    const permArray = typeof perms === 'string' ? JSON.parse(perms) : (perms || []);
+    if (!permArray.includes(permission)) {
+      return res.status(403).json({
+        success: false,
+        message: `Forbidden. This token does not have the '${permission}' permission.`
+      });
+    }
+    next();
+  };
+}
+module.exports = { verifyToken, verifyApiToken, verifyDeveloper, requirePermission };
