@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Phantasmagoria Dashboard Login</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="auth-container">
+    <!-- Login Container -->
+    <div class="auth-box" id="login-container">
+      <h2>Staff Login</h2>
+      <form id="login-form">
+        <input type="email" id="login-email" placeholder="Email" required>
+        <input type="password" id="login-password" placeholder="Password" required>
+        <a href="forgot-password.html" class="link-text" style="display:block; text-align:right; margin-bottom: 1rem; margin-top: -0.5rem;">Forgot Password?</a>
+        <button type="submit" class="btn">Login</button>
+      </form>
+      <div id="login-error" class="error-msg"></div>
+      
+      <p style="text-align: center; margin-top: 2rem; font-size: 0.9rem; color: var(--text-muted);">
+        Don't have an account? <a href="#" id="show-register" class="link-text" style="display: inline; margin: 0;">Register here</a>
+      </p>
+    </div>
+
+    <!-- Register Container -->
+    <div class="auth-box" id="register-container" style="display: none;">
+      <h2>Register New Staff</h2>
+      <form id="register-form">
+        <input type="email" id="register-email" placeholder="Email" required>
+        <input type="password" id="register-password" minlength="8" placeholder="Password (min 8)" required>
+        <button type="submit" class="btn btn-secondary">Register</button>
+      </form>
+      <div id="register-msg" style="margin-top: 1rem; font-size: 0.85rem;"></div>
+
+      <p style="text-align: center; margin-top: 2rem; font-size: 0.9rem; color: var(--text-muted);">
+        Already have an account? <a href="#" id="show-login" class="link-text" style="display: inline; margin: 0;">Back to Login</a>
+      </p>
+    </div>
+  </div>
+  <script src="/js/auth.js"></script>
+</body>
+</html>

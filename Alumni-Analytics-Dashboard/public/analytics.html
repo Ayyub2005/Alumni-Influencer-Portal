@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Analytics Charts</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-brand">Phantasmagoria Analytics</div>
+    <div class="nav-links">
+      <a href="/dashboard.html">Dashboard</a>
+      <a href="/analytics.html" class="active">Analytics</a>
+      <a href="/alumni.html">Alumni</a>
+      <button id="logout-btn" class="btn">Logout</button>
+    </div>
+  </nav>
+
+  <main class="dashboard-content">
+    <div class="filter-bar" style="justify-content: center;">
+      <input type="text" id="filter-programme" list="prog-list" placeholder="All Programmes">
+      <datalist id="prog-list">
+        <option value="BSc Computer Science"></option>
+        <option value="BSc Software Engineering"></option>
+        <option value="BSc Data Science"></option>
+        <option value="BSc Cyber Security"></option>
+        <option value="MSc Artificial Intelligence"></option>
+        <option value="MSc Advanced Software Engineering"></option>
+      </datalist>
+      
+      <input type="number" id="filter-year" list="year-list" placeholder="All Years">
+      <datalist id="year-list">
+        <option value="2026"></option>
+        <option value="2025"></option>
+        <option value="2024"></option>
+        <option value="2023"></option>
+        <option value="2022"></option>
+        <option value="2021"></option>
+        <option value="2020"></option>
+      </datalist>
+
+      <input type="text" id="filter-industry" list="ind-list" placeholder="All Roles">
+      <datalist id="ind-list">
+        <option value="Junior"></option>
+        <option value="Mid-level"></option>
+        <option value="Senior"></option>
+        <option value="Lead"></option>
+        <option value="Analyst"></option>
+      </datalist>
+
+      <button id="apply-filters" class="btn">Apply Filters</button>
+      <button id="export-csv" class="btn btn-secondary">Export All Data (CSV)</button>
+    </div>
+
+    <div class="charts-grid">
+      <!-- Certifications -->
+      <div class="chart-container">
+        <h3>Skills Gap - Certifications</h3>
+        <canvas id="chart-certs"></canvas>
+        <button class="btn btn-sm btn-download" data-target="chart-certs">Download PNG</button>
+      </div>
+
+      <!-- Courses -->
+      <div class="chart-container">
+        <h3>Skills Gap - Courses</h3>
+        <canvas id="chart-courses"></canvas>
+        <button class="btn btn-sm btn-download" data-target="chart-courses">Download PNG</button>
+      </div>
+
+      <!-- Licences -->
+      <div class="chart-container">
+        <h3>Skills Gap - Licences</h3>
+        <canvas id="chart-licences"></canvas>
+        <button class="btn btn-sm btn-download" data-target="chart-licences">Download PNG</button>
+      </div>
+
+      <!-- Employment by Industry -->
+      <div class="chart-container">
+        <h3>Employment by Industry</h3>
+        <canvas id="chart-industry"></canvas>
+        <button class="btn btn-sm btn-download" data-target="chart-industry">Download PNG</button>
+      </div>
+
+      <!-- Top Job Titles -->
+      <div class="chart-container">
+        <h3>Top Job Titles</h3>
+        <canvas id="chart-jobs"></canvas>
+        <button class="btn btn-sm btn-download" data-target="chart-jobs">Download PNG</button>
+      </div>
+
+      <!-- Top Employers -->
+      <div class="chart-container">
+        <h3>Top Employers</h3>
+        <canvas id="chart-employers"></canvas>
+        <button class="btn btn-sm btn-download" data-target="chart-employers">Download PNG</button>
+      </div>
+
+      <!-- Geographic Distribution -->
+      <div class="chart-container">
+        <h3>Geographic Distribution</h3>
+        <canvas id="chart-geo"></canvas>
+        <button class="btn btn-sm btn-download" data-target="chart-geo">Download PNG</button>
+      </div>
+
+    </div>
+  </main>
+  <script src="/js/analytics.js"></script>
+</body>
+</html>

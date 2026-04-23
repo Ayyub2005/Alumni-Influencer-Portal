@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Alumni Directory</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-brand">Phantasmagoria Analytics</div>
+    <div class="nav-links">
+      <a href="/dashboard.html">Dashboard</a>
+      <a href="/analytics.html">Analytics</a>
+      <a href="/alumni.html" class="active">Alumni</a>
+      <button id="logout-btn" class="btn">Logout</button>
+    </div>
+  </nav>
+
+  <main class="dashboard-content">
+    <div class="filter-bar" style="justify-content: center;">
+      <input type="text" id="filter-programme" list="prog-list" placeholder="All Programmes">
+      <datalist id="prog-list">
+        <option value="BSc Computer Science"></option>
+        <option value="BSc Software Engineering"></option>
+        <option value="BSc Data Science"></option>
+        <option value="BSc Cyber Security"></option>
+        <option value="MSc Artificial Intelligence"></option>
+        <option value="MSc Advanced Software Engineering"></option>
+      </datalist>
+      
+      <input type="number" id="filter-year" list="year-list" placeholder="All Years">
+      <datalist id="year-list">
+        <option value="2026"></option>
+        <option value="2025"></option>
+        <option value="2024"></option>
+        <option value="2023"></option>
+        <option value="2022"></option>
+        <option value="2021"></option>
+        <option value="2020"></option>
+      </datalist>
+
+      <input type="text" id="filter-industry" list="ind-list" placeholder="All Roles">
+      <datalist id="ind-list">
+        <option value="Junior"></option>
+        <option value="Mid-level"></option>
+        <option value="Senior"></option>
+        <option value="Lead"></option>
+        <option value="Analyst"></option>
+      </datalist>
+
+      <button id="apply-filters" class="btn">Apply Filters</button>
+      <button id="export-csv" class="btn btn-secondary">Export Page (CSV)</button>
+    </div>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Programme</th>
+          <th>Grad Year</th>
+          <th>Role</th>
+        </tr>
+      </thead>
+      <tbody id="alumni-table-body">
+        <!-- populated by JS -->
+      </tbody>
+    </table>
+
+    <div class="pagination">
+      <button id="prev-page" class="btn btn-secondary" disabled>Previous</button>
+      <span id="page-info">Page 1</span>
+      <button id="next-page" class="btn btn-secondary">Next</button>
+    </div>
+  </main>
+  <script src="/js/alumni.js"></script>
+</body>
+</html>
