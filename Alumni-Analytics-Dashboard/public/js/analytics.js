@@ -158,6 +158,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const query = q.toString() ? `?${q.toString()}` : '';
 
+    const chartsGrid = document.getElementById('charts-grid');
+    if (chartsGrid) chartsGrid.classList.add('loading-overlay');
+
     try {
       const [gap, ind, job, emp, geo] = await Promise.all([
         fetch(`/api/dashboard/skills-gap${query}`).then(r=>r.json()),
@@ -200,6 +203,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     } catch (err) {
       console.error(err);
+    } finally {
+      if (chartsGrid) chartsGrid.classList.remove('loading-overlay');
     }
   }
 

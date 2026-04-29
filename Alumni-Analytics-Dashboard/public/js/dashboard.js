@@ -14,8 +14,22 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Stat value element IDs
+  const statIds = [
+    'stat-total-alumni', 'stat-top-cert', 'stat-top-employer', 'stat-top-job',
+    'stat-top-course', 'stat-top-licence', 'stat-top-industry', 'stat-top-location'
+  ];
+
+  function showSkeletons() {
+    statIds.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.innerHTML = '<span class="skeleton"></span>';
+    });
+  }
+
   // Fetch Dashboard Stats
   async function loadStats() {
+    showSkeletons();
     try {
       const [alumniRes, gapRes, employerRes, jobRes, geoRes, indRes] = await Promise.all([
         fetch('/api/dashboard/alumni?limit=1'),
@@ -47,6 +61,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     } catch (err) {
       console.error('Failed to load stats', err);
+      statIds.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = 'Error';
+      });
     }
   }
 

@@ -29,6 +29,9 @@ document.addEventListener('DOMContentLoaded', () => {
     q.set('page', currentPage);
     q.set('limit', 20);
 
+    const tableWrapper = document.getElementById('table-wrapper');
+    if (tableWrapper) tableWrapper.classList.add('loading-overlay');
+
     try {
       const res = await fetch(`/api/dashboard/alumni?${q.toString()}`);
       const data = await res.json();
@@ -55,6 +58,8 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     } catch(err) {
       console.error(err);
+    } finally {
+      if (tableWrapper) tableWrapper.classList.remove('loading-overlay');
     }
   }
 
